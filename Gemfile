@@ -6,5 +6,5 @@ gemspec
 gem "rspec"
 gem "rake"
 gem 'simplecov'
-gem "ruby-debug19"
+gem "ruby-debug19", platform: :ruby_19
 gem "yajl-ruby"

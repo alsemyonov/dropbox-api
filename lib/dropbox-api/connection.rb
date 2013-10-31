@@ -11,12 +11,19 @@ module Dropbox
       attr_accessor :tokens
 
       def initialize(options = {})
+        oauth = if options.delete(:oauth) { :oauth2 } == :oauth1
+                  require 'dropbox-api/util/oauth'
+                  Dropbox::API::OAuth
+                else
+                  require 'dropbox-api/util/oauth2'
+                  Dropbox::API::OAuth2
+                end
         @options   = options
         @consumers = {}
         @tokens    = {}
         Dropbox::API::Config.endpoints.each do |endpoint, url|
-          @consumers[endpoint] = Dropbox::API::OAuth.consumer(endpoint)
-          @tokens[endpoint]    = Dropbox::API::OAuth.access_token(@consumers[endpoint], options)
+          @consumers[endpoint] = oauth.consumer(endpoint)
+          @tokens[endpoint]    = oauth.access_token(@consumers[endpoint], options)
         end
       end
 
