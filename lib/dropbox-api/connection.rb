@@ -11,7 +11,7 @@ module Dropbox
       attr_accessor :tokens
 
       def initialize(options = {})
-        oauth = if options.delete(:oauth) { :oauth2 } == :oauth1
+        oauth = if options.delete(:oauth) { :oauth1 } == :oauth1
                   require 'dropbox-api/util/oauth'
                   Dropbox::API::OAuth
                 else

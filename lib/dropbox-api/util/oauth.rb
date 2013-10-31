@@ -9,6 +9,7 @@ module Dropbox
           if !Dropbox::API::Config.app_key or !Dropbox::API::Config.app_secret
             raise Dropbox::API::Error::Config.new("app_key or app_secret not provided")
           end
+          require 'oauth'
           ::OAuth::Consumer.new(Dropbox::API::Config.app_key, Dropbox::API::Config.app_secret,
             :site => Dropbox::API::Config.endpoints[endpoint],
             :request_token_path => Dropbox::API::Config.prefix + "/oauth/request_token",

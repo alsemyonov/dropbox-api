@@ -1,4 +1,3 @@
-require "oauth"
 require "multi_json"
 require "hashie"
 
@@ -12,6 +11,8 @@ require "dropbox-api/version"
 require "dropbox-api/util/config"
 require "dropbox-api/util/error"
 require "dropbox-api/util/util"
+require "dropbox-api/util/oauth"
+require "dropbox-api/util/oauth2"
 require "dropbox-api/objects/object"
 require "dropbox-api/objects/fileops"
 require "dropbox-api/objects/file"

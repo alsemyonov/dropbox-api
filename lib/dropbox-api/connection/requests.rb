@@ -7,7 +7,6 @@ module Dropbox
 
         def request(options = {})
           response = yield
-          $response = response
           raise Dropbox::API::Error::ConnectionFailed if !response
           status = response.respond_to?(:code) ? response.code.to_i : response.status
           case status
